@@ -103,27 +103,33 @@ graph TD
     Sleep -.->|弱突触修剪+记忆强化| ExpVis
 ```
 
-## 🧬 突触可视化（睡眠修剪前 原生状态）
-本系统基于赫布学习规则实现突触动态更新，
-以下为三大认知专家**睡眠巩固前**的原始突触权重热力图：
+## 🧬 突触权重演化可视化
+依托仿生赫布学习机制，记忆在持续交互中动态强化关联；
+同时通过睡眠巩固完成弱连接修剪，模拟人脑记忆代谢规律。
 
-- 概念专家：人物/实体记忆突触分布
-![概念专家突触热力图](synapse_map/synapse_map_概念_01.png)
-![概念专家突触热力图](synapse_map/synapse_map_概念_02.png)
-![概念专家突触热力图](synapse_map/synapse_map_概念_03.png)
-![概念专家突触热力图](synapse_map/synapse_map_概念_sleep.png)
+每组专家包含四张时序热力图：
+- `1 / 2 / 3`：日常交互学习的完整时间演化流程
+- `sleep`：睡眠修剪完成后的最终稳态突触分布
 
-- 空间专家：历史事件与时序记忆突触分布
-![空间专家突触热力图](synapse_map/synapse_map_空间_01.png)
-![空间专家突触热力图](synapse_map/synapse_map_空间_02.png)
-![空间专家突触热力图](synapse_map/synapse_map_空间_03.png)
-![空间专家突触热力图](synapse_map/synapse_map_空间_sleep.png)
+### 概念专家｜人物·实体记忆演化
+![概念1](synapse_map_概念_01.png)
+![概念2](synapse_map_概念_02.png)
+![概念3](synapse_map_概念_03.png)
+![概念睡眠](synapse_map_概念_sleep.png)
 
-- 抽象专家：理论/通识/抽象概念突触分布
-![抽象专家突触热力图](synapse_map/synapse_map_抽象_01.png)
-![抽象专家突触热力图](synapse_map/synapse_map_抽象_02.png)
-![抽象专家突触热力图](synapse_map/synapse_map_抽象_03.png)
-![抽象专家突触热力图](synapse_map/synapse_map_抽象_sleep.png)
+### 空间专家｜事件·时序记忆演化
+![空间1](synapse_map_空间_01.png)
+![空间2](synapse_map_空间_02.png)
+![空间3](synapse_map_空间_03.png)
+![空间睡眠](synapse_map_空间_sleep.png)
 
-暖色代表高权重强关联突触，冷色代表弱连接；
-睡眠阶段会自动修剪大量无效弱突触，进一步提升记忆稀疏度与运行效率。
+### 抽象专家｜理论·概念记忆演化
+![抽象1](synapse_map_抽象_01.png)
+![抽象2](synapse_map_抽象_02.png)
+![抽象3](synapse_map_抽象_03.png)
+![抽象睡眠](synapse_map_抽象_sleep.png)
+
+> 视觉说明：
+> 暖色调 = 高权重强关联突触（高频记忆持续强化）
+> 冷色调 = 低权重弱连接
+> 睡眠阶段会批量修剪无效冗余突触，大幅提升整体稀疏度与运行效率
