@@ -96,7 +96,7 @@
 ```bash
 pip install torch faiss-cpu numpy langchain-ollama
 
-
+## 模型架构图
 graph TD
     %% 外部输入层
     UserInput[用户输入] --> Embedding[Ollama Embedding 模型]
