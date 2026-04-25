@@ -101,3 +101,29 @@ graph TD
     Sleep -.->|弱突触修剪+记忆强化| ExpSpa
     Sleep -.->|弱突触修剪+记忆强化| ExpAbs
     Sleep -.->|弱突触修剪+记忆强化| ExpVis
+```
+
+## 🧬 突触可视化（睡眠修剪前 原生状态）
+本系统基于赫布学习规则实现突触动态更新，
+以下为三大认知专家**睡眠巩固前**的原始突触权重热力图：
+
+- 概念专家：人物/实体记忆突触分布
+![概念专家突触热力图](synapse_map/synapse_map_概念_01.png)
+![概念专家突触热力图](synapse_map/synapse_map_概念_02.png)
+![概念专家突触热力图](synapse_map/synapse_map_概念_03.png)
+![概念专家突触热力图](synapse_map/synapse_map_概念_sleep.png)
+
+- 空间专家：历史事件与时序记忆突触分布
+![空间专家突触热力图](synapse_map/synapse_map_空间_01.png)
+![空间专家突触热力图](synapse_map/synapse_map_空间_02.png)
+![空间专家突触热力图](synapse_map/synapse_map_空间_03.png)
+![空间专家突触热力图](synapse_map/synapse_map_空间_sleep.png)
+
+- 抽象专家：理论/通识/抽象概念突触分布
+![抽象专家突触热力图](synapse_map/synapse_map_抽象_01.png)
+![抽象专家突触热力图](synapse_map/synapse_map_抽象_02.png)
+![抽象专家突触热力图](synapse_map/synapse_map_抽象_03.png)
+![抽象专家突触热力图](synapse_map/synapse_map_抽象_sleep.png)
+
+暖色代表高权重强关联突触，冷色代表弱连接；
+睡眠阶段会自动修剪大量无效弱突触，进一步提升记忆稀疏度与运行效率。
