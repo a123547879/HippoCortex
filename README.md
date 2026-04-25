@@ -95,3 +95,50 @@
 ### 1. 环境依赖
 ```bash
 pip install torch faiss-cpu numpy langchain-ollama
+
+
+graph TD
+    %% 外部输入层
+    UserInput[用户输入] --> Embedding[Ollama Embedding 模型]
+    Embedding --> |维度: 1024| InputVector(输入向量)
+
+    %% 核心中枢
+    subgraph "中枢认知层 (AdvancedBrainV5)"
+        Hippo[HippocampusRouterV4<br/>海马体路由]
+        Cortex[PersistentCortexV5<br/>皮层与向量索引]
+    end
+
+    %% 专家网络层
+    subgraph "专家网络 (DynamicExpertV3)"
+        ExpVis[视觉专家]
+        ExpCon[概念专家]
+        ExpSpa[空间专家]
+        ExpAbs[抽象专家]
+    end
+
+    %% 核心逻辑流
+    InputVector --> |分类与权重| Hippo
+    Hippo --> |路由/分配| ExpVis
+    Hippo --> |路由/分配| ExpCon
+    Hippo --> |路由/分配| ExpSpa
+    Hippo --> |路由/分配| ExpAbs
+
+    %% 存储与反馈流
+    ExpVis & ExpCon & ExpSpa & ExpAbs <--> |Heabbian Update| Cortex
+    Cortex <--> |FAISS检索| UserInput
+
+    %% LLM生成层
+    MemoryContext[检索到的关联记忆] --> LLM[LLMBrainWrapperV3<br/>LLM 生成层]
+    InputVector --> LLM
+    LLM --> Response[最终输出]
+
+    %% 配置层
+    Config[(BrainConfig.py<br/>配置管理中心)] -.-> Hippo
+    Config -.-> Cortex
+    Config -.-> LLM
+
+    %% 睡眠/自我修复流
+    Sleep[Sleep Consolidate] -.->|修剪/巩固| ExpVis
+    Sleep -.->|修剪/巩固| ExpCon
+    Sleep -.->|修剪/巩固| ExpSpa
+    Sleep -.->|修剪/巩固| ExpAbs
