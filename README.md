@@ -90,12 +90,6 @@
 
 ---
 
-## 🚀 快速部署运行
-
-### 1. 环境依赖
-```bash
-pip install torch faiss-cpu numpy langchain-ollama
-
 ## 模型架构图
 graph TD
     %% 外部输入层
@@ -142,3 +136,10 @@ graph TD
     Sleep -.->|修剪/巩固| ExpCon
     Sleep -.->|修剪/巩固| ExpSpa
     Sleep -.->|修剪/巩固| ExpAbs
+
+
+## 🚀 快速部署运行
+
+### 1. 环境依赖
+```bash
+pip install torch faiss-cpu numpy langchain-ollama
