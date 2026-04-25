@@ -112,22 +112,22 @@ graph TD
 - `sleep`：睡眠修剪完成后的最终稳态突触分布
 
 ### 概念专家｜人物·实体记忆演化
-![概念1](synapse_map_概念_01.png)
-![概念2](synapse_map_概念_02.png)
-![概念3](synapse_map_概念_03.png)
-![概念睡眠](synapse_map_概念_sleep.png)
+![概念1](synapse_map/synapse_map_概念_01.png)
+![概念2](synapse_map/synapse_map_概念_02.png)
+![概念3](synapse_map/synapse_map_概念_03.png)
+![概念睡眠](synapse_map/synapse_map_概念_sleep.png)
 
 ### 空间专家｜事件·时序记忆演化
-![空间1](synapse_map_空间_01.png)
-![空间2](synapse_map_空间_02.png)
-![空间3](synapse_map_空间_03.png)
-![空间睡眠](synapse_map_空间_sleep.png)
+![空间1](synapse_map/synapse_map_空间_01.png)
+![空间2](synapse_map/synapse_map_空间_02.png)
+![空间3](synapse_map/synapse_map_空间_03.png)
+![空间睡眠](synapse_map/synapse_map_空间_sleep.png)
 
 ### 抽象专家｜理论·概念记忆演化
-![抽象1](synapse_map_抽象_01.png)
-![抽象2](synapse_map_抽象_02.png)
-![抽象3](synapse_map_抽象_03.png)
-![抽象睡眠](synapse_map_抽象_sleep.png)
+![抽象1](synapse_map/synapse_map_抽象_01.png)
+![抽象2](synapse_map/synapse_map_抽象_02.png)
+![抽象3](synapse_map/synapse_map_抽象_03.png)
+![抽象睡眠](synapse_map/synapse_map_抽象_sleep.png)
 
 > 视觉说明：
 > 暖色调 = 高权重强关联突触（高频记忆持续强化）
