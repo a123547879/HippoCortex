@@ -57,50 +57,88 @@
 
 ## 🧠 系统架构
 ```mermaid
-graph TD
-    %% 外部输入层
-    UserInput[用户输入] --> Embedding[Ollama Embedding]
-    Embedding --> |1024维向量| InputVector(输入向量)
+  graph TD
+      %% 外部感知输入层（升级：新增SDR稀疏编码）
+      UserInput[用户输入] --> Embedding[Ollama Embedding 1024维]
+      Embedding --> SDR[ SDR稀疏编码器 ]
+      SDR --> InputVector(时序输入向量)
 
-    %% 中枢认知层
-    subgraph "中枢认知层 AdvancedBrainV5"
-        Hippo[海马体路由 HippocampusRouterV4]
-        Cortex[皮层记忆库 PersistentCortexV5]
-    end
+      %% 中枢认知调度层（版本升级：AdvancedBrainV9）
+      subgraph "中枢认知层 AdvancedBrainV9"
+          Hippo[海马体路由 HippocampusRouterV6]
+          Cortex[持久化皮层记忆库 PersistentCortexV9]
+      end
 
-    %% 多专家网络
-    subgraph "多专家认知网络 DynamicExpertV3"
-        ExpCon[概念专家]
-        ExpSpa[空间专家]
-        ExpAbs[抽象专家]
-        ExpVis[视觉专家]
-    end
+      %% 多专家网络层（升级：SNN脉冲激活 + 局部连接）
+      subgraph "类脑多专家网络 DynamicExpertV6"
+          ExpCon[概念专家]
+          ExpSpa[空间专家]
+          ExpAbs[抽象专家]
+          ExpVis[视觉专家]
+          ExpAvt[身份专家]
+          %% 核心升级：SNN脉冲时序激活
+          SNN[SNN脉冲时序衰减 • 时间维度]
+      end
 
-    %% 核心流转
-    InputVector --> Hippo
-    Hippo --> ExpCon
-    Hippo --> ExpSpa
-    Hippo --> ExpAbs
-    Hippo --> ExpVis
+      %% 预测编码核心层（新增：预测未来 + 误差学习）
+      subgraph "预测编码系统 Predictive Coding"
+          PredHead[时序预测头]
+          PredError[预测误差计算]
+          PredFuture[🔮 未来输入预判]
+      end
 
-    %% 突触更新 & 向量存储
-    ExpCon & ExpSpa & ExpAbs & ExpVis <--> |赫布突触更新| Cortex
+      %% 记忆学习与巩固层（原有+升级：双学习机制）
+      subgraph "突触学习与睡眠巩固"
+          Hebb[赫布突触更新]
+          Prune[弱突触修剪]
+          Sleep[睡眠巩固机制]
+          PredLearn[预测误差学习]
+      end
 
-    %% 记忆检索 & LLM 生成
-    Cortex --> MemoryContext[关联记忆上下文]
-    InputVector & MemoryContext --> LLM[LLM 推理层]
-    LLM --> Response[最终回答]
+      %% 核心推理层（升级：时序思考 + 联想记忆）
+      subgraph "大脑思考引擎 think()"
+          Activate[神经激活传播]
+          Associate[联想记忆检索]
+          TimeProp[时序激活传递]
+      end
 
-    %% 全局配置
-    Config[BrainConfig 配置中心] -.-> Hippo
-    Config -.-> Cortex
-    Config -.-> LLM
+      %% 生成输出层
+      MemoryContext[关联记忆上下文]
+      LLM[LLM推理层 • 严格基于记忆]
+      Response[最终自然回答]
 
-    %% 睡眠巩固机制
-    Sleep[睡眠 Consolidation] -.->|弱突触修剪+记忆强化| ExpCon
-    Sleep -.->|弱突触修剪+记忆强化| ExpSpa
-    Sleep -.->|弱突触修剪+记忆强化| ExpAbs
-    Sleep -.->|弱突触修剪+记忆强化| ExpVis
+      %% ==================== 核心数据流 ====================
+      InputVector --> Hippo
+      Hippo --> ExpCon & ExpSpa & ExpAbs & ExpVis & ExpAvt
+      SNN -.嵌入时序.-> ExpCon & ExpSpa & ExpAbs & ExpVis & ExpAvt
+
+      %% 专家 ↔ 记忆库
+      ExpCon & ExpSpa & ExpAbs & ExpVis & ExpAvt <--> Hebb
+      Hebb <--> Cortex
+
+      %% 思考流程
+      Cortex --> Activate
+      Activate --> TimeProp
+      TimeProp --> Associate
+      Associate --> MemoryContext
+
+      %% 预测编码核心流转（新增：预测未来）
+      TimeProp --> PredHead
+      PredHead --> PredFuture
+      PredHead --> PredError
+      PredError --> PredLearn
+      PredLearn --> Hebb
+
+      %% 睡眠巩固
+      Sleep --> Prune
+      Prune --> ExpCon & ExpSpa & ExpAbs & ExpVis & ExpAvt
+
+      %% 最终生成
+      InputVector & MemoryContext --> LLM
+      LLM --> Response
+
+      %% 配置中心
+      Config[BrainConfig 配置中心] -.-> Hippo & Cortex & LLM & SNN
 ```
 
 ## 🧬 突触权重演化可视化
@@ -112,34 +150,29 @@ graph TD
 - `sleep`：睡眠修剪完成后的最终稳态突触分布
 
 ### 概念专家｜人物·实体记忆演化
-#### 1
-![概念1](synapse_map/synapse_map_概念_01.png)
-#### 2
-![概念2](synapse_map/synapse_map_概念_02.png)
-#### 3
-![概念3](synapse_map/synapse_map_概念_03.png)
-#### sleep
-![概念睡眠](synapse_map/synapse_map_概念_sleep.png)
+#### 20260428 10:50:02
+![概念1](heatmaps/V8/抽象_local_connectivity_20260428_105002.png)
+#### 20260428 12:32:11
+![概念2](heatmaps/V8/概念_local_connectivity_20260428_123211.png)
+
 
 ### 空间专家｜事件·时序记忆演化
-#### 1
-![空间1](synapse_map/synapse_map_空间_01.png)
-#### 2
-![空间2](synapse_map/synapse_map_空间_02.png)
-#### 3
-![空间3](synapse_map/synapse_map_空间_03.png)
-#### sleep
-![空间睡眠](synapse_map/synapse_map_空间_sleep.png)
+#### 20260428 10:50:01
+![空间1](heatmaps/V8/空间_local_connectivity_20260428_105001.png)
+#### 20260428 12:32:12
+![空间2](heatmaps/V8/空间_local_connectivity_20260428_123212.png)
 
 ### 抽象专家｜理论·概念记忆演化
-#### 1
-![抽象1](synapse_map/synapse_map_抽象_01.png)
-#### 2
-![抽象2](synapse_map/synapse_map_抽象_02.png)
-#### 3
-![抽象3](synapse_map/synapse_map_抽象_03.png)
-#### sleep
-![抽象睡眠](synapse_map/synapse_map_抽象_sleep.png)
+#### 20260428 10:50:02
+![抽象1](heatmaps/V8/抽象_local_connectivity_20260428_105002.png)
+#### 20260428 12:32:12
+![抽象2](heatmaps/V8/抽象_local_connectivity_20260428_123212.png)
+
+### 身份专家｜自我认知记忆演化
+#### 20260428 10:50:00
+![身份1](heatmaps/V8/身份_local_connectivity_20260428_105000.png)
+#### 20260428 12:32:11
+![身份2](heatmaps/V8/身份_local_connectivity_20260428_123211.png)
 
 > 视觉说明：
 > 暖色调 = 高权重强关联突触（高频记忆持续强化）
