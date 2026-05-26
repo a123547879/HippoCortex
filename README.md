@@ -3,6 +3,7 @@
 
 > 浙大城市学院｜研究生个人兴趣探索项目
 > 原创架构设计，AI 辅助工程实现，仅用于学习与科研实验
+> [![PyPI version](https://badge.fury.io/py/dyao-hippocortex.svg)](https://pypi.org/project/dyao-hippocortex/)
 
 ---
 
